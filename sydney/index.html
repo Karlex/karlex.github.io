@@ -298,6 +298,113 @@
             .kitten {
                 animation: breathe 4s ease-in-out infinite;
             }
+
+            /* Glass modal box */
+            .glass-modal {
+                position: fixed;
+                top: 58%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 300px;
+                padding: 30px;
+                background: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border-radius: 20px;
+                z-index: 10;
+            }
+
+            /* Front paws holding the box */
+            .paw-container {
+                position: fixed;
+                top: 58%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 300px;
+                height: 0;
+                pointer-events: none;
+                z-index: 5;
+            }
+
+            .front-paw {
+                position: absolute;
+                width: 50px;
+                height: 60px;
+                background: white;
+                border-radius: 50% 50% 40% 40%;
+                top: -30px;
+            }
+
+            .paw-left {
+                left: 20px;
+                transform: rotate(-10deg);
+            }
+
+            .paw-right {
+                right: 20px;
+                transform: rotate(10deg);
+            }
+
+            /* Paw pads */
+            .paw-pad {
+                position: absolute;
+                background: rgba(255, 182, 193, 0.6);
+                border-radius: 50%;
+            }
+
+            .paw-pad-main {
+                width: 20px;
+                height: 25px;
+                bottom: 8px;
+                left: 50%;
+                transform: translateX(-50%);
+                border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            }
+
+            .paw-pad-toe {
+                width: 8px;
+                height: 10px;
+            }
+
+            .paw-pad-toe1 {
+                top: 5px;
+                left: 8px;
+            }
+
+            .paw-pad-toe2 {
+                top: 3px;
+                left: 21px;
+            }
+
+            .paw-pad-toe3 {
+                top: 5px;
+                right: 8px;
+            }
+
+            /* Claws */
+            .claw {
+                position: absolute;
+                width: 3px;
+                height: 8px;
+                background: rgba(200, 200, 200, 0.8);
+                border-radius: 2px;
+                top: 0;
+            }
+
+            .claw1 {
+                left: 10px;
+                transform: rotate(-15deg);
+            }
+
+            .claw2 {
+                left: 23px;
+                transform: rotate(0deg);
+            }
+
+            .claw3 {
+                right: 10px;
+                transform: rotate(15deg);
+            }
         </style>
     </head>
     <body>
@@ -343,6 +450,45 @@
 
                 <!-- Mouth -->
                 <div class="mouth"></div>
+            </div>
+        </div>
+
+        <!-- Glass Modal Box -->
+        <div class="glass-modal">
+            <p
+                style="
+                    margin: 0;
+                    color: rgba(255, 255, 255, 0.9);
+                    font-size: 14px;
+                    text-align: center;
+                "
+            >
+                Sydney (52656191)
+            </p>
+        </div>
+
+        <!-- Front paws holding the box -->
+        <div class="paw-container">
+            <!-- Left paw -->
+            <div class="front-paw paw-left">
+                <div class="claw claw1"></div>
+                <div class="claw claw2"></div>
+                <div class="claw claw3"></div>
+                <div class="paw-pad paw-pad-main"></div>
+                <div class="paw-pad paw-pad-toe paw-pad-toe1"></div>
+                <div class="paw-pad paw-pad-toe paw-pad-toe2"></div>
+                <div class="paw-pad paw-pad-toe paw-pad-toe3"></div>
+            </div>
+
+            <!-- Right paw -->
+            <div class="front-paw paw-right">
+                <div class="claw claw1"></div>
+                <div class="claw claw2"></div>
+                <div class="claw claw3"></div>
+                <div class="paw-pad paw-pad-main"></div>
+                <div class="paw-pad paw-pad-toe paw-pad-toe1"></div>
+                <div class="paw-pad paw-pad-toe paw-pad-toe2"></div>
+                <div class="paw-pad paw-pad-toe paw-pad-toe3"></div>
             </div>
         </div>
     </body>
