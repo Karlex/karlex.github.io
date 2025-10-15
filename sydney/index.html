@@ -36,6 +36,32 @@
                 justify-content: center;
             }
 
+            body::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image:
+                    repeating-linear-gradient(
+                        0deg,
+                        transparent,
+                        transparent 2px,
+                        rgba(255, 255, 255, 0.03) 2px,
+                        rgba(255, 255, 255, 0.03) 4px
+                    ),
+                    repeating-linear-gradient(
+                        90deg,
+                        transparent,
+                        transparent 2px,
+                        rgba(255, 255, 255, 0.03) 2px,
+                        rgba(255, 255, 255, 0.03) 4px
+                    );
+                opacity: 0.5;
+                pointer-events: none;
+            }
+
             /* Kitten Container */
             .kitten {
                 position: relative;
