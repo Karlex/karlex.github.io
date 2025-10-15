@@ -31,116 +31,280 @@
                 width: 100%;
                 overflow: hidden;
                 position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
-            /* CSS Cat Silhouette */
-            .cat {
+            /* Kitten Container */
+            .kitten {
                 position: relative;
-                width: 120px;
-                height: 100px;
+                width: 240px;
+                height: 240px;
+                filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15));
+                transform: scale(1.5);
             }
 
-            .cat-body {
+            /* Head */
+            .head {
                 position: absolute;
-                width: 120px;
-                height: 70px;
-                background: rgba(255, 255, 255, 0.5);
-                border-radius: 50% 50% 40% 40%;
-                bottom: 0;
-            }
-
-            .cat-head {
-                position: absolute;
-                width: 80px;
-                height: 70px;
-                background: rgba(255, 255, 255, 0.5);
+                width: 140px;
+                height: 140px;
+                background: white;
                 border-radius: 50%;
-                top: 10px;
-                left: 20px;
+                top: 60px;
+                left: 50px;
+                box-shadow: inset 0 -5px 15px rgba(255, 182, 193, 0.3);
             }
 
-            .cat-ear-left,
-            .cat-ear-right {
-                position: absolute;
-                width: 0;
-                height: 0;
-                border-left: 16px solid transparent;
-                border-right: 16px solid transparent;
-                border-bottom: 30px solid rgba(255, 255, 255, 0.5);
-                top: -10px;
-            }
-
-            .cat-ear-left {
-                left: 10px;
-            }
-
-            .cat-ear-right {
-                right: 10px;
-            }
-
-            .cat-tail {
+            /* Ears */
+            .ear {
                 position: absolute;
                 width: 60px;
-                height: 30px;
-                background: rgba(255, 255, 255, 0.5);
-                border-radius: 50%;
-                right: -20px;
-                bottom: 20px;
+                height: 70px;
+                background: white;
+                border-radius: 80% 20% 20% 20%;
+                top: 30px;
+            }
+
+            .ear-left {
+                left: 40px;
                 transform: rotate(-30deg);
             }
 
-            /* Eyes for kitten */
-            .cat-eye {
+            .ear-right {
+                right: 40px;
+                transform: rotate(30deg) scaleX(-1);
+            }
+
+            .ear-inner {
+                position: absolute;
+                width: 30px;
+                height: 40px;
+                background: #ffb3d9;
+                border-radius: 80% 20% 20% 20%;
+                top: 10px;
+                left: 15px;
+            }
+
+            /* Eyes */
+            .eyes {
+                position: absolute;
+                width: 100%;
+                top: 40px;
+                display: flex;
+                justify-content: center;
+                gap: 35px;
+            }
+
+            .eye {
+                position: relative;
+                width: 28px;
+                height: 32px;
+                background: #2c2c2c;
+                border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            }
+
+            .eye-shine {
                 position: absolute;
                 width: 8px;
-                height: 12px;
-                background: rgba(255, 255, 255, 0.8);
+                height: 8px;
+                background: white;
                 border-radius: 50%;
-                top: 25px;
+                top: 6px;
+                left: 6px;
             }
 
-            .cat-eye-left {
-                left: 18px;
-            }
-
-            .cat-eye-right {
-                right: 18px;
-            }
-
-            /* Nose for kitten */
-            .cat-nose {
+            .eye-shine-small {
                 position: absolute;
-                width: 6px;
-                height: 6px;
-                background: rgba(255, 255, 255, 0.8);
+                width: 4px;
+                height: 4px;
+                background: white;
                 border-radius: 50%;
-                top: 38px;
-                left: 50%;
-                transform: translateX(-50%);
+                bottom: 6px;
+                right: 6px;
             }
 
-            /* Center kitten */
-            .center-kitten {
+            /* Nose */
+            .nose {
                 position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                width: 0;
+                height: 0;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-top: 12px solid #ffb3d9;
+                top: 80px;
+                left: 60px;
+                border-radius: 3px;
+            }
+
+            /* Mouth */
+            .mouth {
+                position: absolute;
+                top: 90px;
+                left: 70px;
+            }
+
+            .mouth::before,
+            .mouth::after {
+                content: "";
+                position: absolute;
+                width: 20px;
+                height: 15px;
+                border: 2px solid #2c2c2c;
+                border-top: none;
+                border-radius: 0 0 20px 20px;
+            }
+
+            .mouth::before {
+                left: -20px;
+                border-right: none;
+            }
+
+            .mouth::after {
+                right: -20px;
+                border-left: none;
+            }
+
+            /* Whiskers */
+            .whiskers {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+            }
+
+            .whisker {
+                position: absolute;
+                height: 2px;
+                border-radius: 2px;
+                top: 85px;
+            }
+
+            .whisker-left-1 {
+                width: 50px;
+                left: -30px;
+                background: linear-gradient(to left, #2c2c2c, transparent);
+                transform: rotate(-5deg);
+            }
+
+            .whisker-left-2 {
+                width: 45px;
+                left: -25px;
+                top: 95px;
+                background: linear-gradient(to left, #2c2c2c, transparent);
+                transform: rotate(-2deg);
+            }
+
+            .whisker-left-3 {
+                width: 48px;
+                left: -28px;
+                top: 105px;
+                background: linear-gradient(to left, #2c2c2c, transparent);
+                transform: rotate(3deg);
+            }
+
+            .whisker-right-1 {
+                width: 50px;
+                right: -30px;
+                background: linear-gradient(to right, #2c2c2c, transparent);
+                transform: rotate(5deg);
+            }
+
+            .whisker-right-2 {
+                width: 45px;
+                right: -25px;
+                top: 95px;
+                background: linear-gradient(to right, #2c2c2c, transparent);
+                transform: rotate(2deg);
+            }
+
+            .whisker-right-3 {
+                width: 48px;
+                right: -28px;
+                top: 105px;
+                background: linear-gradient(to right, #2c2c2c, transparent);
+                transform: rotate(-3deg);
+            }
+
+            /* Cheeks */
+            .cheek {
+                position: absolute;
+                width: 25px;
+                height: 20px;
+                background: rgba(255, 182, 193, 0.4);
+                border-radius: 50%;
+                top: 70px;
+            }
+
+            .cheek-left {
+                left: 15px;
+            }
+
+            .cheek-right {
+                right: 15px;
+            }
+
+            /* Optional subtle animation */
+            @keyframes breathe {
+                0%,
+                100% {
+                    transform: scale(1.5);
+                }
+                50% {
+                    transform: scale(1.53);
+                }
+            }
+
+            .kitten {
+                animation: breathe 4s ease-in-out infinite;
             }
         </style>
     </head>
     <body>
-        <!-- Center Kitten -->
-        <div class="center-kitten">
-            <div class="cat">
-                <div class="cat-body"></div>
-                <div class="cat-head">
-                    <div class="cat-ear-left"></div>
-                    <div class="cat-ear-right"></div>
-                    <div class="cat-eye cat-eye-left"></div>
-                    <div class="cat-eye cat-eye-right"></div>
-                    <div class="cat-nose"></div>
+        <div class="kitten">
+            <!-- Ears -->
+            <div class="ear ear-left">
+                <div class="ear-inner"></div>
+            </div>
+            <div class="ear ear-right">
+                <div class="ear-inner"></div>
+            </div>
+
+            <!-- Head -->
+            <div class="head">
+                <!-- Whiskers -->
+                <div class="whiskers">
+                    <div class="whisker whisker-left-1"></div>
+                    <div class="whisker whisker-left-2"></div>
+                    <div class="whisker whisker-left-3"></div>
+                    <div class="whisker whisker-right-1"></div>
+                    <div class="whisker whisker-right-2"></div>
+                    <div class="whisker whisker-right-3"></div>
                 </div>
-                <div class="cat-tail"></div>
+
+                <!-- Eyes -->
+                <div class="eyes">
+                    <div class="eye">
+                        <div class="eye-shine"></div>
+                        <div class="eye-shine-small"></div>
+                    </div>
+                    <div class="eye">
+                        <div class="eye-shine"></div>
+                        <div class="eye-shine-small"></div>
+                    </div>
+                </div>
+
+                <!-- Cheeks -->
+                <div class="cheek cheek-left"></div>
+                <div class="cheek cheek-right"></div>
+
+                <!-- Nose -->
+                <div class="nose"></div>
+
+                <!-- Mouth -->
+                <div class="mouth"></div>
             </div>
         </div>
     </body>
