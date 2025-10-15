@@ -33,160 +33,115 @@
                 position: relative;
             }
 
-            /* Floating cat paw prints */
-            .paw {
+            /* CSS Cat Silhouette */
+            .cat {
+                position: relative;
+                width: 120px;
+                height: 100px;
+            }
+
+            .cat-body {
                 position: absolute;
-                opacity: 0;
-                animation: float-paw 8s infinite;
-                font-size: 2rem;
-                filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+                width: 120px;
+                height: 70px;
+                background: rgba(255, 255, 255, 0.5);
+                border-radius: 50% 50% 40% 40%;
+                bottom: 0;
             }
 
-            @keyframes float-paw {
-                0% {
-                    transform: translateY(100vh) rotate(0deg);
-                    opacity: 0;
-                }
-                10% {
-                    opacity: 0.6;
-                }
-                90% {
-                    opacity: 0.6;
-                }
-                100% {
-                    transform: translateY(-10vh) rotate(360deg);
-                    opacity: 0;
-                }
-            }
-
-            /* Cat silhouettes in corners */
-            .cat-corner {
+            .cat-head {
                 position: absolute;
-                font-size: 4rem;
-                opacity: 0.3;
-                animation: purr 3s ease-in-out infinite;
-            }
-
-            @keyframes purr {
-                0%,
-                100% {
-                    transform: scale(1);
-                }
-                50% {
-                    transform: scale(1.05);
-                }
-            }
-
-            .cat-top-left {
-                top: 20px;
+                width: 80px;
+                height: 70px;
+                background: rgba(255, 255, 255, 0.5);
+                border-radius: 50%;
+                top: 10px;
                 left: 20px;
             }
 
-            .cat-top-right {
-                top: 20px;
-                right: 20px;
-            }
-
-            .cat-bottom-left {
-                bottom: 20px;
-                left: 20px;
-            }
-
-            .cat-bottom-right {
-                bottom: 20px;
-                right: 20px;
-            }
-
-            /* Walking cat animation */
-            .walking-cat {
+            .cat-ear-left,
+            .cat-ear-right {
                 position: absolute;
-                font-size: 3rem;
-                bottom: 30%;
-                animation: walk 15s linear infinite;
+                width: 0;
+                height: 0;
+                border-left: 16px solid transparent;
+                border-right: 16px solid transparent;
+                border-bottom: 30px solid rgba(255, 255, 255, 0.5);
+                top: -10px;
             }
 
-            @keyframes walk {
-                0% {
-                    left: -5%;
-                    transform: scaleX(1);
-                }
-                48% {
-                    left: 100%;
-                    transform: scaleX(1);
-                }
-                50% {
-                    left: 100%;
-                    transform: scaleX(-1);
-                }
-                98% {
-                    left: -5%;
-                    transform: scaleX(-1);
-                }
-                100% {
-                    left: -5%;
-                    transform: scaleX(1);
-                }
+            .cat-ear-left {
+                left: 10px;
             }
 
-            /* Sleeping cat at bottom */
-            .sleeping-cat {
+            .cat-ear-right {
+                right: 10px;
+            }
+
+            .cat-tail {
                 position: absolute;
-                bottom: 10px;
+                width: 60px;
+                height: 30px;
+                background: rgba(255, 255, 255, 0.5);
+                border-radius: 50%;
+                right: -20px;
+                bottom: 20px;
+                transform: rotate(-30deg);
+            }
+
+            /* Eyes for kitten */
+            .cat-eye {
+                position: absolute;
+                width: 8px;
+                height: 12px;
+                background: rgba(255, 255, 255, 0.8);
+                border-radius: 50%;
+                top: 25px;
+            }
+
+            .cat-eye-left {
+                left: 18px;
+            }
+
+            .cat-eye-right {
+                right: 18px;
+            }
+
+            /* Nose for kitten */
+            .cat-nose {
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                background: rgba(255, 255, 255, 0.8);
+                border-radius: 50%;
+                top: 38px;
                 left: 50%;
                 transform: translateX(-50%);
-                font-size: 2.5rem;
-                opacity: 0.4;
-                animation: sleep-breathe 2s ease-in-out infinite;
             }
 
-            @keyframes sleep-breathe {
-                0%,
-                100% {
-                    transform: translateX(-50%) scale(1);
-                }
-                50% {
-                    transform: translateX(-50%) scale(1.03);
-                }
+            /* Center kitten */
+            .center-kitten {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
             }
         </style>
     </head>
     <body>
-        <!-- Corner cats -->
-        <div class="cat-corner cat-top-left">🐱</div>
-        <div class="cat-corner cat-top-right">🐱</div>
-        <div class="cat-corner cat-bottom-left">😺</div>
-        <div class="cat-corner cat-bottom-right">😺</div>
-
-        <!-- Walking cat -->
-        <div class="walking-cat">🐈</div>
-
-        <!-- Sleeping cat -->
-        <div class="sleeping-cat">😴🐱</div>
-
-        <script>
-            // Create floating paw prints
-            function createPaw() {
-                const paw = document.createElement("div");
-                paw.className = "paw";
-                paw.textContent = "🐾";
-                paw.style.left = Math.random() * 100 + "%";
-                paw.style.animationDelay = Math.random() * 2 + "s";
-                paw.style.animationDuration = Math.random() * 4 + 6 + "s";
-                document.body.appendChild(paw);
-
-                // Remove paw after animation
-                setTimeout(() => {
-                    paw.remove();
-                }, 10000);
-            }
-
-            // Create paws at intervals
-            setInterval(createPaw, 1500);
-
-            // Create initial paws
-            for (let i = 0; i < 5; i++) {
-                setTimeout(createPaw, i * 300);
-            }
-        </script>
+        <!-- Center Kitten -->
+        <div class="center-kitten">
+            <div class="cat">
+                <div class="cat-body"></div>
+                <div class="cat-head">
+                    <div class="cat-ear-left"></div>
+                    <div class="cat-ear-right"></div>
+                    <div class="cat-eye cat-eye-left"></div>
+                    <div class="cat-eye cat-eye-right"></div>
+                    <div class="cat-nose"></div>
+                </div>
+                <div class="cat-tail"></div>
+            </div>
+        </div>
     </body>
 </html>
