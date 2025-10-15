@@ -1,28 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sydney Xatspace</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sydney</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-        body {
-            font-family: 'Geist Mono', monospace;
-            background: linear-gradient(135deg, #ffc0e0 0%, #ffb3d9 25%, #ffa6d1 50%, #ff99ca 75%, #ff8cc2 100%);
-            min-height: 100vh;
-            width: 100%;
-            overflow: hidden;
-        }
-    </style>
-</head>
-<body>
-</body>
+            body {
+                font-family: "Geist Mono", monospace;
+                background: linear-gradient(
+                    135deg,
+                    #ffc0e0 0%,
+                    #ffb3d9 25%,
+                    #ffa6d1 50%,
+                    #ff99ca 75%,
+                    #ff8cc2 100%
+                );
+                min-height: 100vh;
+                width: 100%;
+                overflow: hidden;
+                position: relative;
+            }
+
+            /* Floating cat paw prints */
+            .paw {
+                position: absolute;
+                opacity: 0;
+                animation: float-paw 8s infinite;
+                font-size: 2rem;
+                filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+            }
+
+            @keyframes float-paw {
+                0% {
+                    transform: translateY(100vh) rotate(0deg);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 0.6;
+                }
+                90% {
+                    opacity: 0.6;
+                }
+                100% {
+                    transform: translateY(-10vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+
+            /* Cat silhouettes in corners */
+            .cat-corner {
+                position: absolute;
+                font-size: 4rem;
+                opacity: 0.3;
+                animation: purr 3s ease-in-out infinite;
+            }
+
+            @keyframes purr {
+                0%,
+                100% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.05);
+                }
+            }
+
+            .cat-top-left {
+                top: 20px;
+                left: 20px;
+            }
+
+            .cat-top-right {
+                top: 20px;
+                right: 20px;
+            }
+
+            .cat-bottom-left {
+                bottom: 20px;
+                left: 20px;
+            }
+
+            .cat-bottom-right {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            /* Walking cat animation */
+            .walking-cat {
+                position: absolute;
+                font-size: 3rem;
+                bottom: 30%;
+                animation: walk 15s linear infinite;
+            }
+
+            @keyframes walk {
+                0% {
+                    left: -5%;
+                    transform: scaleX(1);
+                }
+                48% {
+                    left: 100%;
+                    transform: scaleX(1);
+                }
+                50% {
+                    left: 100%;
+                    transform: scaleX(-1);
+                }
+                98% {
+                    left: -5%;
+                    transform: scaleX(-1);
+                }
+                100% {
+                    left: -5%;
+                    transform: scaleX(1);
+                }
+            }
+
+            /* Sleeping cat at bottom */
+            .sleeping-cat {
+                position: absolute;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 2.5rem;
+                opacity: 0.4;
+                animation: sleep-breathe 2s ease-in-out infinite;
+            }
+
+            @keyframes sleep-breathe {
+                0%,
+                100% {
+                    transform: translateX(-50%) scale(1);
+                }
+                50% {
+                    transform: translateX(-50%) scale(1.03);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Corner cats -->
+        <div class="cat-corner cat-top-left">🐱</div>
+        <div class="cat-corner cat-top-right">🐱</div>
+        <div class="cat-corner cat-bottom-left">😺</div>
+        <div class="cat-corner cat-bottom-right">😺</div>
+
+        <!-- Walking cat -->
+        <div class="walking-cat">🐈</div>
+
+        <!-- Sleeping cat -->
+        <div class="sleeping-cat">😴🐱</div>
+
+        <script>
+            // Create floating paw prints
+            function createPaw() {
+                const paw = document.createElement("div");
+                paw.className = "paw";
+                paw.textContent = "🐾";
+                paw.style.left = Math.random() * 100 + "%";
+                paw.style.animationDelay = Math.random() * 2 + "s";
+                paw.style.animationDuration = Math.random() * 4 + 6 + "s";
+                document.body.appendChild(paw);
+
+                // Remove paw after animation
+                setTimeout(() => {
+                    paw.remove();
+                }, 10000);
+            }
+
+            // Create paws at intervals
+            setInterval(createPaw, 1500);
+
+            // Create initial paws
+            for (let i = 0; i < 5; i++) {
+                setTimeout(createPaw, i * 300);
+            }
+        </script>
+    </body>
 </html>
