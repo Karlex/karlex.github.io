@@ -85,6 +85,18 @@
                 border-radius: 80% 20% 20% 20%;
                 top: 10px;
                 left: 15px;
+                animation: inner-ear-flap 3s ease-in-out infinite;
+            }
+
+            /* Inner ear flapping animation */
+            @keyframes inner-ear-flap {
+                0%,
+                100% {
+                    transform: scaleY(1);
+                }
+                50% {
+                    transform: scaleY(0.95);
+                }
             }
 
             /* Eyes */
