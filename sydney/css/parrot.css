@@ -1,0 +1,307 @@
+/* Parrot container - sitting on branch */
+.parrot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 4.5vw;
+    height: 5.2vw;
+    min-width: 50px;
+    min-height: 58px;
+    max-width: 70px;
+    max-height: 81px;
+    z-index: 50;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    pointer-events: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.parrot:hover {
+    transform: scale(1.1);
+}
+
+/* Parrot body - egg-shaped, classic bird body */
+.parrot-body {
+    position: absolute;
+    width: 38px;
+    height: 42px;
+    background: linear-gradient(160deg, #52d4c9 0%, #3eb8ae 60%, #32a199 100%);
+    border-radius: 50% 50% 48% 48% / 42% 42% 58% 58%;
+    bottom: 10px;
+    left: 13px;
+    box-shadow: inset -2px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Chest patch - lighter colored belly */
+.parrot-chest {
+    position: absolute;
+    width: 22px;
+    height: 28px;
+    background: linear-gradient(150deg, #f0fffe 0%, #d4f8f5 40%, #b8f3ef 100%);
+    border-radius: 50%;
+    bottom: 4px;
+    left: 8px;
+    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.5);
+}
+
+/* Parrot head - slightly oval, natural shape */
+.parrot-head {
+    position: absolute;
+    width: 28px;
+    height: 30px;
+    background: linear-gradient(140deg, #5dd9d1 0%, #4ecdc4 50%, #3eb8ae 100%);
+    border-radius: 50% 50% 48% 48%;
+    top: 4px;
+    left: 17px;
+    box-shadow: inset -1px -2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Parrot beak - hooked parrot beak */
+.parrot-beak {
+    position: absolute;
+    width: 9px;
+    height: 12px;
+    background: linear-gradient(to bottom, #ffb84d 0%, #ff9f1a 100%);
+    border-radius: 0 0 55% 55% / 0 0 65% 65%;
+    top: 16px;
+    left: 1px;
+    transform: rotate(-5deg);
+    box-shadow: inset -1px 1px 2px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+}
+
+.parrot-beak::before {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background: linear-gradient(to bottom, #ffcc80 0%, #ffb84d 100%);
+    border-radius: 0 55% 45% 45%;
+    top: -3px;
+    left: 0;
+}
+
+/* Parrot eye - large expressive eye */
+.parrot-eye {
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    background: white;
+    border-radius: 50%;
+    top: 9px;
+    left: 14px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    z-index: 3;
+}
+
+.parrot-eye::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #2c2c2c;
+    border-radius: 50%;
+    top: 2.5px;
+    left: 2.5px;
+    animation: parrot-blink 6s infinite;
+}
+
+.parrot-eye::after {
+    content: '';
+    position: absolute;
+    width: 2.5px;
+    height: 2.5px;
+    background: white;
+    border-radius: 50%;
+    top: 3px;
+    left: 3.5px;
+    z-index: 1;
+}
+
+@keyframes parrot-blink {
+    0%, 96%, 100% {
+        transform: scaleY(1);
+    }
+    98% {
+        transform: scaleY(0.1);
+    }
+}
+
+/* Parrot wing - folded naturally against body */
+.parrot-wing {
+    position: absolute;
+    width: 30px;
+    height: 34px;
+    background: linear-gradient(145deg, #2a998f 0%, #237a72 80%, #1a5e58 100%);
+    border-radius: 42% 8% 62% 48%;
+    bottom: 15px;
+    left: 18px;
+    transform: rotate(-10deg);
+    box-shadow: inset -2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Wing feather accent - colorful tip */
+.parrot-wing::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 18px;
+    background: rgba(232, 67, 147, 0.6);
+    border-radius: 50%;
+    bottom: 5px;
+    right: 3px;
+    transform: rotate(10deg);
+}
+
+/* Parrot tail - elegant, flowing tail feathers */
+.parrot-tail {
+    position: absolute;
+    width: 22px;
+    height: 46px;
+    background: linear-gradient(to bottom, #ff85b3 0%, #ff6b9d 22%, #e84393 48%, #c44569 72%, #8b5cf6 100%);
+    border-radius: 50% 50% 46% 46%;
+    bottom: 7px;
+    right: 5px;
+    transform-origin: top center;
+    box-shadow: inset -1px 0 3px rgba(0, 0, 0, 0.3);
+    animation: tail-sway 4s ease-in-out infinite;
+}
+
+/* Individual tail feathers - layered depth effect */
+.parrot-tail::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 42px;
+    background: linear-gradient(to bottom, rgba(255, 133, 179, 0.9) 0%, rgba(255, 107, 157, 0.9) 22%, rgba(232, 67, 147, 0.9) 48%, rgba(196, 69, 105, 0.9) 72%, rgba(139, 92, 246, 0.9) 100%);
+    border-radius: 50% 50% 44% 44%;
+    top: 2px;
+    right: 5px;
+}
+
+.parrot-tail::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 38px;
+    background: linear-gradient(to bottom, rgba(255, 133, 179, 0.75) 0%, rgba(255, 107, 157, 0.75) 22%, rgba(232, 67, 147, 0.75) 48%, rgba(196, 69, 105, 0.75) 72%, rgba(139, 92, 246, 0.75) 100%);
+    border-radius: 50% 50% 42% 42%;
+    top: 4px;
+    left: 9px;
+}
+
+@keyframes tail-sway {
+    0%, 100% {
+        transform: rotate(-3deg);
+    }
+    50% {
+        transform: rotate(3deg);
+    }
+}
+
+/* Parrot crest feathers - subtle top of head feathers */
+.parrot-crest {
+    position: absolute;
+    top: 0px;
+    left: 20px;
+    width: 18px;
+    height: 10px;
+    z-index: 4;
+}
+
+.parrot-crest::before,
+.parrot-crest::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 10px;
+    background: linear-gradient(to top, #ffd93d 0%, #ffeb3b 60%, #fff9c4 100%);
+    border-radius: 50% 50% 30% 30%;
+    box-shadow: inset -1px 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.parrot-crest::before {
+    left: 2px;
+    transform: rotate(-25deg);
+}
+
+.parrot-crest::after {
+    right: 2px;
+    transform: rotate(25deg);
+}
+
+/* Parrot feet - gripping branch, more visible */
+.parrot-feet {
+    position: absolute;
+    bottom: 5px;
+    left: 24px;
+    width: 26px;
+    height: 16px;
+}
+
+.parrot-foot {
+    position: absolute;
+    width: 2.5px;
+    height: 10px;
+    background: linear-gradient(to bottom, #a0826d 0%, #8d7355 50%, #6b5840 100%);
+    border-radius: 1.5px;
+    bottom: 0;
+}
+
+.parrot-foot-left {
+    left: 6px;
+    transform: rotate(-8deg);
+}
+
+.parrot-foot-right {
+    right: 6px;
+    transform: rotate(8deg);
+}
+
+/* Toes gripping branch - more defined */
+.parrot-foot::before,
+.parrot-foot::after {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 2px;
+    background: linear-gradient(to right, #a0826d 0%, #8d7355 50%, #6b5840 100%);
+    bottom: -1px;
+    border-radius: 1px;
+}
+
+.parrot-foot::before {
+    left: -5px;
+    transform: rotate(-30deg);
+}
+
+.parrot-foot::after {
+    right: -5px;
+    transform: rotate(30deg);
+}
+
+/* Colorful cheek patch - subtle blush */
+.parrot-cheek {
+    position: absolute;
+    width: 9px;
+    height: 8px;
+    background: radial-gradient(circle, rgba(255, 107, 107, 0.85) 0%, rgba(255, 107, 107, 0.45) 70%, transparent 100%);
+    border-radius: 50%;
+    top: 14px;
+    left: 9px;
+    z-index: 2;
+}
+
+/* Subtle idle animation */
+@keyframes parrot-idle {
+    0%, 100% {
+        transform: scale(1) translateY(0);
+    }
+    50% {
+        transform: scale(1.01) translateY(-2px);
+    }
+}
+
+.parrot {
+    animation: parrot-idle 3.5s ease-in-out infinite;
+}

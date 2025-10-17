@@ -6,14 +6,8 @@
 
 body {
     font-family: "Geist Mono", monospace;
-    background: linear-gradient(
-        135deg,
-        #ffc0e0 0%,
-        #ffb3d9 25%,
-        #ffa6d1 50%,
-        #ff99ca 75%,
-        #ff8cc2 100%
-    );
+    background: url('../public/background.png') no-repeat center center;
+    background-size: 100% 100%;
     min-height: 100vh;
     width: 100%;
     overflow: hidden;
@@ -50,10 +44,10 @@ body::before {
 }
 
 /* Control buttons */
-.theme-switcher,
 .sound-toggle {
     position: fixed;
     bottom: 20px;
+    left: 20px;
     width: 45px;
     height: 45px;
     border: 2px solid rgba(255, 255, 255, 0.3);
@@ -70,15 +64,6 @@ body::before {
     justify-content: center;
 }
 
-.theme-switcher {
-    right: 20px;
-}
-
-.sound-toggle {
-    left: 20px;
-}
-
-.theme-switcher:hover,
 .sound-toggle:hover {
     background: rgba(255, 255, 255, 0.4);
     transform: translateY(-5px);
@@ -86,38 +71,33 @@ body::before {
     border-color: rgba(255, 255, 255, 0.5);
 }
 
-.theme-switcher:active,
 .sound-toggle:active {
     transform: translateY(-2px);
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
 }
 
-.palette-icon {
-    width: 22px;
-    height: 22px;
-    background: white;
-    border-radius: 50%;
-    position: relative;
+/* Signature watermark */
+.signature {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-.palette-icon::before,
-.palette-icon::after {
-    content: "";
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #ff99ca;
+.signature img {
+    height: 24px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
-.palette-icon::before {
-    top: 4px;
-    left: 6px;
-}
-
-.palette-icon::after {
-    bottom: 4px;
-    right: 6px;
+.signature:hover {
+    opacity: 0.9;
+    transform: translateX(-50%) translateY(-2px);
 }
 
 .sound-icon {
@@ -178,11 +158,13 @@ body::before {
 }
 
 .kitten {
-    position: relative;
+    position: fixed;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.5);
     width: 240px;
     height: 240px;
     filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15));
-    transform: scale(1.5);
 }
 
 .head {
@@ -408,10 +390,10 @@ body::before {
 @keyframes breathe {
     0%,
     100% {
-        transform: scale(1.5);
+        transform: translate(-50%, -50%) scale(1.5);
     }
     50% {
-        transform: scale(1.53);
+        transform: translate(-50%, -50%) scale(1.53);
     }
 }
 
@@ -422,7 +404,7 @@ body::before {
 /* Text display */
 .glass-modal {
     position: fixed;
-    top: 58%;
+    top: 46%;
     left: 50%;
     transform: translateX(-50%);
     width: 300px;
@@ -436,7 +418,7 @@ body::before {
 
 .paw-container {
     position: fixed;
-    top: 58%;
+    top: 46%;
     left: 50%;
     transform: translateX(-50%);
     width: 300px;
