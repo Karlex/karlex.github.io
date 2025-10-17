@@ -20,53 +20,53 @@
     transform: scale(1.1);
 }
 
-/* Parrot body - egg-shaped, classic bird body */
+/* Parrot body - egg-shaped, classic bird body - Sun Conure yellow/orange */
 .parrot-body {
     position: absolute;
     width: 38px;
     height: 42px;
-    background: linear-gradient(160deg, #52d4c9 0%, #3eb8ae 60%, #32a199 100%);
+    background: linear-gradient(160deg, #ffd93d 0%, #ffb700 60%, #ff9500 100%);
     border-radius: 50% 50% 48% 48% / 42% 42% 58% 58%;
     bottom: 10px;
     left: 13px;
     box-shadow: inset -2px 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Chest patch - lighter colored belly */
+/* Chest patch - yellow-orange gradient belly like real Sun Conure */
 .parrot-chest {
     position: absolute;
     width: 22px;
     height: 28px;
-    background: linear-gradient(150deg, #f0fffe 0%, #d4f8f5 40%, #b8f3ef 100%);
+    background: linear-gradient(150deg, #ffeb3b 0%, #ffc107 40%, #ff9800 100%);
     border-radius: 50%;
     bottom: 4px;
     left: 8px;
-    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.3);
 }
 
-/* Parrot head - slightly oval, natural shape */
+/* Parrot head - slightly oval, natural shape - golden yellow/orange */
 .parrot-head {
     position: absolute;
     width: 28px;
     height: 30px;
-    background: linear-gradient(140deg, #5dd9d1 0%, #4ecdc4 50%, #3eb8ae 100%);
+    background: linear-gradient(140deg, #ffeb3b 0%, #ffd93d 50%, #ffc107 100%);
     border-radius: 50% 50% 48% 48%;
     top: 4px;
     left: 17px;
     box-shadow: inset -1px -2px 4px rgba(0, 0, 0, 0.15);
 }
 
-/* Parrot beak - hooked parrot beak */
+/* Parrot beak - black hooked parrot beak */
 .parrot-beak {
     position: absolute;
     width: 9px;
     height: 12px;
-    background: linear-gradient(to bottom, #ffb84d 0%, #ff9f1a 100%);
+    background: linear-gradient(to bottom, #424242 0%, #212121 100%);
     border-radius: 0 0 55% 55% / 0 0 65% 65%;
     top: 16px;
     left: 1px;
     transform: rotate(-5deg);
-    box-shadow: inset -1px 1px 2px rgba(0, 0, 0, 0.25);
+    box-shadow: inset -1px 1px 2px rgba(0, 0, 0, 0.4);
     z-index: 2;
 }
 
@@ -75,7 +75,7 @@
     position: absolute;
     width: 7px;
     height: 7px;
-    background: linear-gradient(to bottom, #ffcc80 0%, #ffb84d 100%);
+    background: linear-gradient(to bottom, #616161 0%, #424242 100%);
     border-radius: 0 55% 45% 45%;
     top: -3px;
     left: 0;
@@ -127,12 +127,12 @@
     }
 }
 
-/* Parrot wing - folded naturally against body */
+/* Parrot wing - folded naturally against body - yellow to green gradient */
 .parrot-wing {
     position: absolute;
     width: 30px;
     height: 34px;
-    background: linear-gradient(145deg, #2a998f 0%, #237a72 80%, #1a5e58 100%);
+    background: linear-gradient(145deg, #ffeb3b 0%, #aed581 50%, #7cb342 100%);
     border-radius: 42% 8% 62% 48%;
     bottom: 15px;
     left: 18px;
@@ -140,40 +140,42 @@
     box-shadow: inset -2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Wing feather accent - colorful tip */
+/* Wing feather accent - tiny blue flight feather tips (barely visible) */
 .parrot-wing::after {
     content: '';
     position: absolute;
-    width: 5px;
-    height: 18px;
-    background: rgba(232, 67, 147, 0.6);
+    width: 3px;
+    height: 8px;
+    background: linear-gradient(to bottom, #5c6bc0 0%, #3f51b5 100%);
     border-radius: 50%;
-    bottom: 5px;
-    right: 3px;
-    transform: rotate(10deg);
+    bottom: 2px;
+    right: 4px;
+    transform: rotate(5deg);
+    opacity: 0.7;
 }
 
-/* Parrot tail - elegant, flowing tail feathers */
+/* Parrot tail - elegant, flowing tail feathers hanging down - yellow to green gradient */
 .parrot-tail {
     position: absolute;
     width: 22px;
     height: 46px;
-    background: linear-gradient(to bottom, #ff85b3 0%, #ff6b9d 22%, #e84393 48%, #c44569 72%, #8b5cf6 100%);
+    background: linear-gradient(to bottom, #ffeb3b 0%, #c5e1a5 40%, #9ccc65 70%, #7cb342 100%);
     border-radius: 50% 50% 46% 46%;
-    bottom: 7px;
-    right: 5px;
+    bottom: -20px;
+    right: 10px;
     transform-origin: top center;
+    transform: rotate(20deg);
     box-shadow: inset -1px 0 3px rgba(0, 0, 0, 0.3);
     animation: tail-sway 4s ease-in-out infinite;
 }
 
-/* Individual tail feathers - layered depth effect */
+/* Individual tail feathers - layered depth effect - yellow to green */
 .parrot-tail::before {
     content: '';
     position: absolute;
     width: 18px;
     height: 42px;
-    background: linear-gradient(to bottom, rgba(255, 133, 179, 0.9) 0%, rgba(255, 107, 157, 0.9) 22%, rgba(232, 67, 147, 0.9) 48%, rgba(196, 69, 105, 0.9) 72%, rgba(139, 92, 246, 0.9) 100%);
+    background: linear-gradient(to bottom, rgba(255, 235, 59, 0.9) 0%, rgba(197, 225, 165, 0.9) 40%, rgba(156, 204, 101, 0.9) 70%, rgba(124, 179, 66, 0.9) 100%);
     border-radius: 50% 50% 44% 44%;
     top: 2px;
     right: 5px;
@@ -184,7 +186,7 @@
     position: absolute;
     width: 14px;
     height: 38px;
-    background: linear-gradient(to bottom, rgba(255, 133, 179, 0.75) 0%, rgba(255, 107, 157, 0.75) 22%, rgba(232, 67, 147, 0.75) 48%, rgba(196, 69, 105, 0.75) 72%, rgba(139, 92, 246, 0.75) 100%);
+    background: linear-gradient(to bottom, rgba(255, 235, 59, 0.75) 0%, rgba(197, 225, 165, 0.75) 40%, rgba(156, 204, 101, 0.75) 70%, rgba(124, 179, 66, 0.75) 100%);
     border-radius: 50% 50% 42% 42%;
     top: 4px;
     left: 9px;
@@ -192,14 +194,14 @@
 
 @keyframes tail-sway {
     0%, 100% {
-        transform: rotate(-3deg);
+        transform: rotate(18deg);
     }
     50% {
-        transform: rotate(3deg);
+        transform: rotate(22deg);
     }
 }
 
-/* Parrot crest feathers - subtle top of head feathers */
+/* Parrot crest feathers - bright yellow/orange crest */
 .parrot-crest {
     position: absolute;
     top: 0px;
@@ -215,7 +217,7 @@
     position: absolute;
     width: 6px;
     height: 10px;
-    background: linear-gradient(to top, #ffd93d 0%, #ffeb3b 60%, #fff9c4 100%);
+    background: linear-gradient(to top, #ff9500 0%, #ffc107 60%, #ffeb3b 100%);
     border-radius: 50% 50% 30% 30%;
     box-shadow: inset -1px 0 2px rgba(0, 0, 0, 0.2);
 }
@@ -280,12 +282,12 @@
     transform: rotate(30deg);
 }
 
-/* Colorful cheek patch - subtle blush */
+/* Colorful cheek patch - orange/peach cheek patch */
 .parrot-cheek {
     position: absolute;
     width: 9px;
     height: 8px;
-    background: radial-gradient(circle, rgba(255, 107, 107, 0.85) 0%, rgba(255, 107, 107, 0.45) 70%, transparent 100%);
+    background: radial-gradient(circle, rgba(255, 152, 0, 0.85) 0%, rgba(255, 152, 0, 0.45) 70%, transparent 100%);
     border-radius: 50%;
     top: 14px;
     left: 9px;
