@@ -30,16 +30,8 @@ let currentThemeIndex = 0;
 let soundEnabled = true;
 let audioContext = null;
 let purrSound = null;
-
-function initThemeSwitcher() {
-  const body = document.body;
-  const switcher = document.querySelector(".theme-switcher");
-
-  switcher.addEventListener("click", () => {
-    currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-    body.style.background = themes[currentThemeIndex].gradient;
-  });
-}
+let lastMouseMoveTime = 0;
+let purrCheckInterval = null;
 
 function initEyeTracking() {
   const eyes = document.querySelectorAll(".eye");
@@ -77,48 +69,133 @@ function createPurrSound() {
     audioContext.resume();
   }
 
-  const mainOsc = audioContext.createOscillator();
-  const lfoOsc = audioContext.createOscillator();
-  const gainNode = audioContext.createGain();
-  const lfoGain = audioContext.createGain();
+  const now = audioContext.currentTime;
+  const oscillators = [];
+
+  // Create multiple oscillators for richer, more natural sound
+  // Low rumble (base frequency)
+  const osc1 = audioContext.createOscillator();
+  osc1.type = "sawtooth";
+  osc1.frequency.setValueAtTime(25, now);
+
+  // Mid tone (adds body)
+  const osc2 = audioContext.createOscillator();
+  osc2.type = "triangle";
+  osc2.frequency.setValueAtTime(50, now);
+
+  // Higher harmonic (adds texture)
+  const osc3 = audioContext.createOscillator();
+  osc3.type = "sine";
+  osc3.frequency.setValueAtTime(100, now);
+
+  // Create rhythm/pulse effect (the purr rhythm)
+  const lfo1 = audioContext.createOscillator();
+  lfo1.type = "sine";
+  lfo1.frequency.setValueAtTime(25, now); // ~25 Hz = typical purr rate
+
+  const lfo2 = audioContext.createOscillator();
+  lfo2.type = "sine";
+  lfo2.frequency.setValueAtTime(26.5, now); // Slightly different for natural variation
+
+  // Gain nodes for each oscillator
+  const gain1 = audioContext.createGain();
+  const gain2 = audioContext.createGain();
+  const gain3 = audioContext.createGain();
+  const masterGain = audioContext.createGain();
+
+  // LFO gain nodes
+  const lfoGain1 = audioContext.createGain();
+  const lfoGain2 = audioContext.createGain();
+
+  lfoGain1.gain.setValueAtTime(8, now);
+  lfoGain2.gain.setValueAtTime(5, now);
+
+  // Filter for warmth
   const filter = audioContext.createBiquadFilter();
-
-  mainOsc.type = "sine";
-  mainOsc.frequency.setValueAtTime(80, audioContext.currentTime);
-
-  lfoOsc.type = "sine";
-  lfoOsc.frequency.setValueAtTime(28, audioContext.currentTime);
-
-  lfoGain.gain.setValueAtTime(12, audioContext.currentTime);
-
   filter.type = "lowpass";
-  filter.frequency.setValueAtTime(250, audioContext.currentTime);
-  filter.Q.setValueAtTime(0.7, audioContext.currentTime);
+  filter.frequency.setValueAtTime(400, now);
+  filter.Q.setValueAtTime(1.5, now);
 
-  gainNode.gain.setValueAtTime(0.025, audioContext.currentTime);
+  // Add slight variation to filter over time
+  filter.frequency.linearRampToValueAtTime(350, now + 0.5);
+  filter.frequency.linearRampToValueAtTime(400, now + 1);
 
-  lfoOsc.connect(lfoGain);
-  lfoGain.connect(mainOsc.frequency);
+  // Set individual gains (balance the layers)
+  gain1.gain.setValueAtTime(0.4, now);
+  gain2.gain.setValueAtTime(0.3, now);
+  gain3.gain.setValueAtTime(0.15, now);
 
-  mainOsc.connect(filter);
-  filter.connect(gainNode);
-  gainNode.connect(audioContext.destination);
+  // Master volume with smoother fade in
+  masterGain.gain.setValueAtTime(0.001, now);
+  masterGain.gain.exponentialRampToValueAtTime(0.04, now + 0.2); // Smoother fade in
 
-  mainOsc.start();
-  lfoOsc.start();
+  // Auto-stop after 7 seconds with smooth fade
+  setTimeout(() => {
+    if (purrSound && purrSound.oscillators.includes(osc1)) {
+      const stopNow = audioContext.currentTime;
+      masterGain.gain.cancelScheduledValues(stopNow);
+      masterGain.gain.setValueAtTime(masterGain.gain.value, stopNow);
+      masterGain.gain.exponentialRampToValueAtTime(0.001, stopNow + 0.4);
 
-  return { mainOsc, lfoOsc };
+      setTimeout(() => {
+        try {
+          oscillators.forEach(osc => osc.stop());
+        } catch (e) {
+          // Already stopped
+        }
+        if (purrSound && purrSound.oscillators.includes(osc1)) {
+          purrSound = null;
+        }
+      }, 450);
+    }
+  }, 6600);
+
+  // Connect LFOs to create pulsing effect
+  lfo1.connect(lfoGain1);
+  lfo2.connect(lfoGain2);
+  lfoGain1.connect(gain1.gain);
+  lfoGain2.connect(gain2.gain);
+
+  // Connect oscillators through their gains
+  osc1.connect(gain1);
+  osc2.connect(gain2);
+  osc3.connect(gain3);
+
+  // Mix all through filter and master gain
+  gain1.connect(filter);
+  gain2.connect(filter);
+  gain3.connect(filter);
+  filter.connect(masterGain);
+  masterGain.connect(audioContext.destination);
+
+  // Start all oscillators
+  osc1.start();
+  osc2.start();
+  osc3.start();
+  lfo1.start();
+  lfo2.start();
+
+  oscillators.push(osc1, osc2, osc3, lfo1, lfo2);
+
+  return { oscillators, masterGain };
 }
 
 function stopPurrSound() {
   if (purrSound) {
-    try {
-      purrSound.mainOsc.stop();
-      purrSound.lfoOsc.stop();
-    } catch (e) {
-      // Oscillators already stopped
-    }
-    purrSound = null;
+    const now = audioContext.currentTime;
+    // Longer, smoother fade out to prevent crackling
+    purrSound.masterGain.gain.cancelScheduledValues(now);
+    purrSound.masterGain.gain.setValueAtTime(purrSound.masterGain.gain.value, now);
+    purrSound.masterGain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+
+    setTimeout(() => {
+      try {
+        purrSound.oscillators.forEach(osc => osc.stop());
+      } catch (e) {
+        // Oscillators already stopped
+      }
+      purrSound = null;
+    }, 450);
   }
 }
 
@@ -127,13 +204,52 @@ function initPurrSound() {
   const soundToggle = document.querySelector(".sound-toggle");
 
   kitten.addEventListener("mouseenter", () => {
+    lastMouseMoveTime = Date.now();
+
     if (soundEnabled && !purrSound) {
       purrSound = createPurrSound();
+
+      // Check every 300ms if mouse is still moving
+      purrCheckInterval = setInterval(() => {
+        const timeSinceLastMove = Date.now() - lastMouseMoveTime;
+
+        // If mouse hasn't moved in 500ms, fade out the purr
+        if (timeSinceLastMove > 500 && purrSound) {
+          stopPurrSound();
+          clearInterval(purrCheckInterval);
+          purrCheckInterval = null;
+        }
+      }, 300);
+    }
+  });
+
+  kitten.addEventListener("mousemove", () => {
+    lastMouseMoveTime = Date.now();
+
+    // Restart purr if it stopped but mouse is moving again
+    if (soundEnabled && !purrSound) {
+      purrSound = createPurrSound();
+
+      if (!purrCheckInterval) {
+        purrCheckInterval = setInterval(() => {
+          const timeSinceLastMove = Date.now() - lastMouseMoveTime;
+
+          if (timeSinceLastMove > 500 && purrSound) {
+            stopPurrSound();
+            clearInterval(purrCheckInterval);
+            purrCheckInterval = null;
+          }
+        }, 300);
+      }
     }
   });
 
   kitten.addEventListener("mouseleave", () => {
     stopPurrSound();
+    if (purrCheckInterval) {
+      clearInterval(purrCheckInterval);
+      purrCheckInterval = null;
+    }
   });
 
   soundToggle.addEventListener("click", () => {
@@ -142,12 +258,15 @@ function initPurrSound() {
 
     if (!soundEnabled) {
       stopPurrSound();
+      if (purrCheckInterval) {
+        clearInterval(purrCheckInterval);
+        purrCheckInterval = null;
+      }
     }
   });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  initThemeSwitcher();
   initEyeTracking();
   initPurrSound();
 });
