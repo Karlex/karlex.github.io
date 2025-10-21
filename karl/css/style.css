@@ -1,0 +1,310 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Geist Mono", monospace;
+    background: #000000;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Umbreon CSS */
+#umbreon {
+    background-color: black;
+    margin: 5% auto;
+    width: 750px;
+    height: 500px;
+}
+
+#ears {
+    height: 60%;
+}
+
+.ear {
+    width: 8%;
+    height: 60%;
+    border: solid 5px yellow;
+    border-color: yellow;
+    border-radius: 250%/50px 50px 50px 50px;
+    background-color: yellow;
+    transform-origin: bottom center;
+}
+
+#leftEar {
+    float: left;
+    margin-left: 0%;
+    transform: rotate(55deg);
+    animation: earSwayLeft 3s ease-in-out infinite;
+}
+
+#rightEar {
+    float: right;
+    margin-right: 0%;
+    transform: rotate(-55deg);
+    animation: earSwayRight 3s ease-in-out infinite;
+}
+
+@keyframes earSwayLeft {
+    0%, 100% {
+        transform: rotate(55deg);
+    }
+    50% {
+        transform: rotate(60deg);
+    }
+}
+
+@keyframes earSwayRight {
+    0%, 100% {
+        transform: rotate(-55deg);
+    }
+    50% {
+        transform: rotate(-60deg);
+    }
+}
+
+#yellowCircle {
+    height: 110px;
+    width: 110px;
+    border: solid 15px yellow;
+    border-radius: 50%;
+    margin: auto;
+    position: relative;
+    top: 0%;
+}
+
+#yellowCircle::after,
+#yellowCircle::before {
+    content: "";
+    border-radius: 100%;
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    transform-origin: center center;
+}
+
+#yellowCircle::after {
+    box-shadow: inset 0 17px 0 rgba(255, 255, 0, 0.6),
+                inset 17px 0 0 rgba(255, 235, 0, 0.6),
+                inset 0 -17px 0 rgba(255, 215, 0, 0.6),
+                inset -17px 0 0 rgba(255, 200, 0, 0.6);
+    animation: rotar 2s linear infinite;
+    pointer-events: none;
+}
+
+#yellowCircle::before {
+    box-shadow: inset 0 17px 0 rgba(255, 245, 0, 0.6),
+                inset 17px 0 0 rgba(255, 255, 0, 0.6),
+                inset 0 -17px 0 rgba(255, 235, 0, 0.6),
+                inset -17px 0 0 rgba(255, 215, 0, 0.6);
+    animation: rotar 2s -1s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotar {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#eyes {
+    height: 20%;
+}
+
+.eye {
+    background-color: red;
+    width: 23%;
+    height: 90%;
+    border-radius: 50%;
+    position: relative;
+    --pupil-x: 0px;
+    --pupil-y: 0px;
+}
+
+.eye::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    border-radius: 50%;
+    animation: blink 6s infinite;
+    z-index: 20;
+}
+
+#leftEye {
+    float: left;
+    margin-left: 18%;
+    transform: rotate(45deg);
+    overflow: hidden;
+}
+
+#rightEye {
+    float: right;
+    margin-right: 18%;
+    transform: rotate(-45deg);
+    overflow: hidden;
+}
+
+.pupil {
+    background-color: black;
+    border-radius: 50%;
+    width: 50%;
+    height: 45%;
+    transition: transform 0.1s ease;
+}
+
+#leftPupil {
+    float: right;
+    margin: 3% 23% 0 0;
+    transform: rotate(45deg) translate(var(--pupil-x), var(--pupil-y));
+}
+
+#rightPupil {
+    float: left;
+    margin: 3% 0 0 23%;
+    transform: rotate(-45deg) translate(var(--pupil-x), var(--pupil-y));
+}
+
+/* Eye shine/reflection */
+.eye-shine {
+    position: absolute;
+    width: 30%;
+    height: 25%;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    top: 15%;
+    left: 20%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Blinking animation */
+@keyframes blink {
+    0%, 94%, 100% {
+        top: -100%;
+    }
+    95%, 97% {
+        top: 0;
+    }
+}
+
+#eyeBorders {
+    height: 40%;
+}
+
+#topEyeBorders {
+    height: 50%;
+}
+
+.topEyeBorder {
+    height: 190%;
+    width: 25%;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 0px -80px 0px 0px black;
+    position: relative;
+    bottom: 110%;
+}
+
+#leftTopEyeBorder {
+    float: left;
+    transform: rotate(45deg);
+    margin-left: 12%;
+}
+
+#rightTopEyeBorder {
+    float: right;
+    transform: rotate(-45deg);
+    margin-right: 12%;
+}
+
+#bottomEyeBorders {
+    height: 50%;
+}
+
+.downEyeBorder {
+    height: 190%;
+    width: 25%;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 0px 80px 0px 0px black;
+    position: relative;
+    bottom: 380%;
+}
+
+#leftBottomEyeBorder {
+    float: left;
+    transform: rotate(45deg);
+    margin-left: 23%;
+}
+
+#rightBottomEyeBorder {
+    float: right;
+    transform: rotate(-45deg);
+    margin-right: 23%;
+}
+
+/* Signature watermark */
+.signature {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.signature img {
+    height: 24px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.signature:hover {
+    opacity: 0.9;
+    transform: translateX(-50%) translateY(-2px);
+}
+
+/* Shiny Umbreon variant */
+body.shiny .eye {
+    background-color: yellow;
+}
+
+body.shiny .ear {
+    border-color: blue;
+    background-color: blue;
+}
+
+body.shiny #yellowCircle {
+    border-color: blue;
+}
+
+body.shiny #yellowCircle::after {
+    box-shadow: inset 0 17px 0 rgba(0, 100, 255, 0.6),
+                inset 17px 0 0 rgba(0, 120, 255, 0.6),
+                inset 0 -17px 0 rgba(0, 140, 255, 0.6),
+                inset -17px 0 0 rgba(0, 160, 255, 0.6);
+}
+
+body.shiny #yellowCircle::before {
+    box-shadow: inset 0 17px 0 rgba(0, 80, 255, 0.6),
+                inset 17px 0 0 rgba(0, 100, 255, 0.6),
+                inset 0 -17px 0 rgba(0, 120, 255, 0.6),
+                inset -17px 0 0 rgba(0, 140, 255, 0.6);
+}
+

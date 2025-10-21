@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@700&amp;display=swap');
+    </style>
+  </defs>
+  <!-- Handwritten text "by karl" -->
+  <text x="100" y="38"
+        font-family="'Tangerine', cursive"
+        font-size="40"
+        font-weight="700"
+        fill="white"
+        opacity="0.6"
+        text-anchor="middle"
+        style="letter-spacing: 2px;">by karl</text>
+</svg>
